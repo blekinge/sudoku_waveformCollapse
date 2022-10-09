@@ -5,11 +5,10 @@ import dk.blekinge.waveformcollapse.sudokus.Sudoku4x4;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class Solver4x4Test {
-
+public class Solver4x4Test {
 
     @Test
-    void solve4x4() {
+    public void solve4x4() {
 
         Sudoku situation = new Sudoku4x4();
 
@@ -27,10 +26,13 @@ class Solver4x4Test {
         System.out.println(solved);
 
         Assertions.assertEquals(
-                "'\u001B[32m1\u001B[0m', '\u001B[32m1\u001B[0m', '\u001B[32m2\u001B[0m', '\u001B[32m3\u001B[0m', \n" +
-                "'4', '\u001B[32m1\u001B[0m', '\u001B[32m3\u001B[0m', '3', \n" +
-                "'\u001B[32m3\u001B[0m', '\u001B[32m4\u001B[0m', '\u001B[32m4\u001B[0m', '\u001B[32m2\u001B[0m', \n" +
-                "'\u001B[32m1\u001B[0m', '4', '2', '\u001B[32m2\u001B[0m', ",
+                """
+                        ------------------
+                        '[32m2[0m', '[32m3[0m'|'[32m1[0m', '4'|
+                        '[32m1[0m', '[32m4[0m'|'[32m3[0m', '2'|
+                        ------------------
+                        '3', '[32m2[0m'|'[32m4[0m', '[32m1[0m'|
+                        '4', '[32m1[0m'|'[32m2[0m', '[32m3[0m'|""",
                 solved.toString());
     }
 

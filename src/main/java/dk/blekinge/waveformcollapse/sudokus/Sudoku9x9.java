@@ -1,9 +1,9 @@
 package dk.blekinge.waveformcollapse.sudokus;
 
-import com.github.miachm.sods.Color;
-import com.github.miachm.sods.Sheet;
-import com.github.miachm.sods.SpreadSheet;
-import com.github.miachm.sods.Style;
+//import com.github.miachm.sods.Color;
+//import com.github.miachm.sods.Sheet;
+//import com.github.miachm.sods.SpreadSheet;
+//import com.github.miachm.sods.Style;
 import dk.blekinge.waveformcollapse.Entanglement;
 import dk.blekinge.waveformcollapse.Particle;
 import dk.blekinge.waveformcollapse.Value;
@@ -120,6 +120,7 @@ public class Sudoku9x9 extends Sudoku{
 
     }
 
+    /*
 
     public void readOds(Path odsFile) throws IOException {
         SpreadSheet spread = new SpreadSheet(odsFile.toFile());
@@ -191,4 +192,5 @@ public class Sudoku9x9 extends Sudoku{
 
         spread.save(odsFile.toFile());
     }
+    */
 }

@@ -1,8 +1,6 @@
 package dk.blekinge.waveformcollapse;
 
-import org.apache.commons.collections4.SetUtils;
-import org.apache.commons.lang3.Range;
-import org.apache.commons.lang3.tuple.Pair;
+import javafx.util.Pair;
 
 import java.util.List;
 import java.util.Map;
@@ -10,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.Range;
 
 @lombok.Value
 public class Entanglement {
@@ -51,13 +50,13 @@ public class Entanglement {
                                                  .flatMap(particle -> particle.getPossibleValues()
                                                                               .stream()
                                                                               .filter(allPossibleValues::contains)
-                                                                              .map(v -> Pair.of(v, particle)))
+                                                                              .map(v ->  new Pair<>(v, particle)))
                                                  .collect(Collectors.toMap(Pair::getKey,
                                                                            pair -> Set.of(pair.getValue()),
                                                                            SetUtils::union));
         Set<Assignment> assignments2 = map.entrySet().stream()
                                           .filter(entry -> entry.getValue().size() == 1)
-                                          .map(entry -> Pair.of(entry.getKey(),
+                                          .map(entry -> new Pair<>(entry.getKey(),
                                                                 entry.getValue()
                                                                      .stream()
                                                                      .findFirst()

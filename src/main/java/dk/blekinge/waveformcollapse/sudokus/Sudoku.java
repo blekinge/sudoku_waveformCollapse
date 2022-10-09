@@ -6,8 +6,13 @@ import dk.blekinge.waveformcollapse.Value;
 import lombok.Getter;
 import lombok.NonNull;
 
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 @Getter
 public abstract class Sudoku extends Situation {
@@ -36,7 +41,7 @@ public abstract class Sudoku extends Situation {
                                                                                   "," +
                                                                                   column +
                                                                                   " out of bounds"));
-        s(p,v);
+        s(p, v);
     }
 
     @Override
@@ -46,16 +51,23 @@ public abstract class Sudoku extends Situation {
         long boxWidth = Math.round(Math.sqrt(Math.sqrt(allParticles.size())));
         int line = 0;
         int i = 0;
-        for (Particle particle : allParticles) {
+        List<Particle> particles = allParticles.stream()
+                                               .sorted(Comparator.comparing(Particle::getRow)
+                                                                 .thenComparing(Particle::getColumn))
+                                               .toList();
+        for (Particle particle : particles) {
             if (i % width == 0) {
                 result.append("\n");
                 line++;
-                if ((line) % boxWidth == 1){
-                    result.append("-------------------------------------\n");
+                if ((line) % boxWidth == 1) {
+                    result.append(LongStream.range(0, (3 * boxWidth + 2 * (boxWidth - 1) + 1) * boxWidth)
+                                            .mapToObj(l -> "-")
+                                            .collect(Collectors.joining()))
+                          .append("\n");
                 }
             }
             String finish = ", ";
-            if ((i+1) % boxWidth  == 0) {
+            if ((i + 1) % boxWidth == 0) {
                 finish = "|";
             }
             Value value = particle.getValue();
